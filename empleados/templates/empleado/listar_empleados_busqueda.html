@@ -1,0 +1,47 @@
+<h1>Buscar Empleados</h1>
+
+<form method="get">
+    <input type="text" name="q" placeholder="Buscar por nombre, apellido, rol..." value="{{ request.GET.q }}">
+    <button type="submit">Buscar</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>País</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for empleado in empleados %}
+        <tr>
+            <td>{{ empleado.nombre }}</td>
+            <td>{{ empleado.apellido }}</td>
+            <td>{{ empleado.email }}</td>
+            <td>{{ empleado.rol.nombreRol }}</td>
+            <td>{{ empleado.pais.nombre }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No se encontraron empleados.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if is_paginated %}
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+      <a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">Anterior</a>
+    {% endif %}
+
+    <span>Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+      <a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">Siguiente</a>
+    {% endif %}
+  </div>
+{% endif %}

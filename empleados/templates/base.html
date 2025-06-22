@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mi Sitio{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .btn-volver {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1b8edb;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'inicio' %}" class="btn-volver">← Volver</a>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

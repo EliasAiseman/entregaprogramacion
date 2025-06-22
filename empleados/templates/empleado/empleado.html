@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Empleados Vigentes{% endblock %}
+
+
+{% block content %}
+    <h1>Lista de Empleados</h1>
+    {% if empleados %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Rol</th>
+                <th>Email</th>
+                <th>Fecha de Nac.</th>
+                <th>Puesto</th>
+                <th>País</th>
+                <th>Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for empleado in empleados %}
+                <tr>
+                    <td>{{ empleado.nombre }}</td>
+                    <td>{{ empleado.apellido }}</td>
+                    <td>{{ empleado.rol }}</td>
+                    <td>{{ empleado.email }}</td>
+                    <td>{{ empleado.fecha_nac }}</td>
+                    <td>{{ empleado.get_trabajo_display }}</td>
+                    <td>{{ empleado.pais }}</td>
+                    <td>{{ empleado.departamento }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No hay empleados registrados.</p>
+    {% endif %}
+{% endblock %}
